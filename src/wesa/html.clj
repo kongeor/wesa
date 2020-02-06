@@ -30,13 +30,30 @@
         [:h1 "wesa!"]
         [:form {:method "POST" :action "query"}
          [:input {:type "hidden" :name "__anti-forgery-token" :value (:anti-forgery-token req)}]
-         [:input {:type "text" :name "q"}]
-         [:input {:type "submit" :value "submit"}]]
+         [:div.form-group
+          [:label {:for "query-input"} "Query"]
+          [:input#query-input.form-control {:type "text" :name "q"}]]
+         [:button.btn.btn-primary {:type "submit"} "Submit"]]
+
+        [:br]
 
         (when tweets
-          [:ul
-           (for [t tweets]
-             [:li (:full_text t)])])]
+          [:table.table
+           [:thead
+            [:tr
+             [:th {:scope "col"} "Text"]
+             [:th {:scope "col"} "Positive"]
+             [:th {:scope "col"} "Neutral"]
+             [:th {:scope "col"} "Negative"]
+             [:th {:scope "col"} "Compound"]]]
+           [:tbody
+            (for [t tweets]
+              [:tr
+               [:td (:full_text t)]
+               [:td (-> t :polarity :positive)]
+               [:td (-> t :polarity :neutral)]
+               [:td (-> t :polarity :negative)]
+               [:td (-> t :polarity :compound)]])]])]
 
 
        (include-js

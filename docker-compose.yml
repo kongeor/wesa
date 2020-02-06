@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - TWITTER_APP_KEY
+      - TWITTER_APP_SECRET
+      - HTTP_PORT

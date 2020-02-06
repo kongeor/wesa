@@ -11,6 +11,10 @@
                  [org.danielsz/system "0.4.5"]
                  [environ "1.1.0"]
                  [twitter-api "1.8.0"]
+                 [com.github.apanimesh061/vader-sentiment-analyzer "1.0"]
+                 [log4j/log4j "1.2.17"]
+                 [org.slf4j/slf4j-nop "1.7.30"]
+                 [org.apache.lucene/lucene-analyzers-common "6.4.1"]
                  ]
   :plugins [[lein-environ "1.1.0"]]
   :repl-options {:init-ns wesa.core}
