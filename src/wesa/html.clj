@@ -28,32 +28,36 @@
 
        [:div#main-area.container
         [:h1 "wesa!"]
+        [:p.lead "Tweets sentiment analysis using " [:a {:href "http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf"} "Vader"]]
         [:form {:method "POST" :action "query"}
          [:input {:type "hidden" :name "__anti-forgery-token" :value (:anti-forgery-token req)}]
          [:div.form-group
           [:label {:for "query-input"} "Query"]
-          [:input#query-input.form-control {:type "text" :name "q"}]]
+          [:input#query-input.form-control {:type "text" :name "q" :value q :placeholder "please enter a search term"}]]
          [:button.btn.btn-primary {:type "submit"} "Submit"]]
 
         [:br]
 
         (when tweets
-          [:table.table
+          [:table.table.table-striped
            [:thead
             [:tr
+             [:th {:scope "col"} "#"]
              [:th {:scope "col"} "Text"]
              [:th {:scope "col"} "Positive"]
              [:th {:scope "col"} "Neutral"]
              [:th {:scope "col"} "Negative"]
              [:th {:scope "col"} "Compound"]]]
            [:tbody
-            (for [t tweets]
-              [:tr
-               [:td (:full_text t)]
-               [:td (-> t :polarity :positive)]
-               [:td (-> t :polarity :neutral)]
-               [:td (-> t :polarity :negative)]
-               [:td (-> t :polarity :compound)]])]])]
+            (map-indexed
+              (fn [idx t]
+                [:tr
+                 [:th {:scope "col"} (inc idx)]
+                 [:td (:full_text t)]
+                 [:td (-> t :polarity :positive)]
+                 [:td (-> t :polarity :neutral)]
+                 [:td (-> t :polarity :negative)]
+                 [:td (-> t :polarity :compound)]]) tweets)]])]
 
 
        (include-js

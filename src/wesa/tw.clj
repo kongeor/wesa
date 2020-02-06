@@ -26,7 +26,7 @@
                  :oauth-creds my-creds
                  :params {:result_type "recent"
                           :lang "en"
-                          :count 20
+                          :count 100
                           :q (str query " AND -filter:retweets AND -filter:replies")
                           :tweet_mode "extended"})]
     (map
