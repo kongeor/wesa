@@ -11,9 +11,9 @@
        [:meta {:charset "utf-8"}]
        [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
        [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
-       [:meta {:name "description" :content "System"}]
-       [:meta {:name "author" :content "Daniel Szmulewicz"}]
-       [:title "System"]
+       [:meta {:name "description" :content "wesa"}]
+       [:meta {:name "author" :content "Kostas Georgiadis"}]
+       [:title "wesa"]
 
        (include-css
          "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
